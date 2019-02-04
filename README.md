@@ -1,0 +1,2 @@
+# sample
+just fo fun
