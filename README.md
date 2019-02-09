@@ -1,6 +1,7 @@
 # sample
 just fo fun
 Sample request from postman
+```json
 {
 	"info": {
 		"_postman_id": "04f4a1e2-9183-4bb2-86cc-b89d7dea75ec",
@@ -139,3 +140,4 @@ Sample request from postman
 		}
 	]
 }
+```
