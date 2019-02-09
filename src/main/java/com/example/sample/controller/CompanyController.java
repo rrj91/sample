@@ -2,12 +2,11 @@ package com.example.sample.controller;
 
 import com.example.sample.dto.CompanyDTO;
 import com.example.sample.dto.DealDTO;
-import com.example.sample.model.Company;
-import com.example.sample.model.Deal;
 import com.example.sample.service.CompanyService;
 import com.example.sample.service.DealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,14 +35,16 @@ public class CompanyController {
             return new ResponseEntity<>(companyDTO,HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @PostMapping
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CompanyDTO> createCompany(@RequestBody CompanyDTO companyDTO){
         CompanyDTO createdCompany = companyService.saveCompany(companyDTO) ;
         if(createdCompany != null && createdCompany.getId() != null)
             return new ResponseEntity<>(createdCompany,HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-    @PostMapping(path = "/{companyId}/deals")
+
+    @PostMapping(path = "/{companyId}/deals", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<DealDTO> createDeal(@PathVariable Long companyId, @RequestBody DealDTO deal){
         DealDTO createdDeal = dealService.saveDealOfCompany(deal,companyId);
         if(createdDeal != null && createdDeal.getId() != null)
